@@ -16,6 +16,8 @@ import javax.swing.ImageIcon;
 
 public class Main implements ActionListener {
 
+	 TrayIcon trayIcon;
+	 SystemTray tray;
 	/**
 	 * @param args
 	 */
@@ -38,9 +40,9 @@ public class Main implements ActionListener {
         	System.out.println("Current dir using System:" +currentDir);
 	        PopupMenu popup = new PopupMenu();
 	        Image image = new ImageIcon(currentDir+"\\src\\tray\\test.jpg").getImage();
-	        TrayIcon trayIcon = new TrayIcon(image, "tray icon");
+	        trayIcon = new TrayIcon(image, "tray icon");
 	        trayIcon.setImageAutoSize(true);
-	        SystemTray tray = SystemTray.getSystemTray();
+	        tray = SystemTray.getSystemTray();
 	       
 	        // Create as pop-up menu components
 	        
@@ -52,31 +54,8 @@ public class Main implements ActionListener {
 	        popup.add(exitItem);
 	       
 	        trayIcon.setPopupMenu(popup);
-	        boolean t=true;
-	        int x=1;
-	     
 	        
-	        NumberToImage num = new NumberToImage();
-	        Image image2 = num.intToImage(x);
-	    
-	        trayIcon.setImage(image2);
-	        x++;
-	        try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	        Image image3 = num.intToImage(x);
-	        trayIcon.setImage(image3);
-	        	
-	        
-	        try {
-	       
-	            tray.add(trayIcon);
-	        } catch (AWTException e) {
-	            System.out.println("TrayIcon could not be added.");
-	        }
+	        startUpdater();
 	        
         }
 	}
@@ -93,5 +72,11 @@ public class Main implements ActionListener {
 			
 		}
 		
+	}
+	
+	public void startUpdater()
+	{ 	
+			Thread updater = new Thread(new TrayUpdater(trayIcon,tray));
+		    updater.start();   
 	}
 }
