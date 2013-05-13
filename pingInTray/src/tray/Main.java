@@ -72,6 +72,7 @@ public class Main implements ActionListener {
 	        	
 	        
 	        try {
+	       
 	            tray.add(trayIcon);
 	        } catch (AWTException e) {
 	            System.out.println("TrayIcon could not be added.");
