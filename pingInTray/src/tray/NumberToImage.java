@@ -15,14 +15,10 @@ public class NumberToImage {
 		
 		String stringOfPingValue = Integer.toString(pingValue); 
 	    JLabel text = new JLabel(stringOfPingValue);
-	    text.setSize(25,20);
-	    text.setAlignmentX(6);
+	    text.setSize(26,20);
+	    text.setFont(new Font("MONOSPACED", Font.BOLD,18)); 
+	    text.setBackground(Color.orange);
 	    BufferedImage image = getImage(text);
-//	    try {
-//            ImageIO.write(image, "png", new File("C:/temp/img.png"));
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
 	    return  image;
 	}
 	
