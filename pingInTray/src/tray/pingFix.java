@@ -48,7 +48,7 @@ public class pingFix {
             String timeNeedsCleaning= split1[4];
             timeNeedsCleaning= timeNeedsCleaning.replace("time=", "");
             String timeString = timeNeedsCleaning.replace("ms", "");
-            System.out.println(timeString);
+            //System.out.println(timeString);
             
             int time = Integer.parseInt(timeString);
             return time;

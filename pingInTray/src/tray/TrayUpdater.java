@@ -20,15 +20,18 @@ public class TrayUpdater implements Runnable {
 	        int x=1;
 	     
 	        while(true){
+	        pingFix p = new pingFix();
+	        int time = p.isReachableByPing("www.google.ie");
+	        
 	        NumberToImage num = new NumberToImage();
-	        Image image2 = num.intToImage(x);
+	        Image image2 = num.intToImage(time);
 	  
 	        	try {
 	        		
 	        		trayIcon.setImage(image2);
 	            	tray.add(trayIcon);
 	            	try {
-						Thread.sleep(1000);
+						Thread.sleep(3000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -37,7 +40,7 @@ public class TrayUpdater implements Runnable {
 	        	} catch (AWTException e) {
 	        		System.out.println("TrayIcon could not be added.");
 	        	}
-	        	x++;
+	        	
 	        }
 		
 	}
