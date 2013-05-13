@@ -22,8 +22,6 @@ public class Main implements ActionListener {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("WOO !");
 		Main main = new Main();
 	}
 
@@ -74,6 +72,7 @@ public class Main implements ActionListener {
 		
 	}
 	
+	//rubbish
 	public void startUpdater()
 	{ 	
 			Thread updater = new Thread(new TrayUpdater(trayIcon,tray));
