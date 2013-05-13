@@ -74,6 +74,7 @@ public class Main implements ActionListener {
 		
 	}
 	
+	//rubbish
 	public void startUpdater()
 	{ 	
 			Thread updater = new Thread(new TrayUpdater(trayIcon,tray));
