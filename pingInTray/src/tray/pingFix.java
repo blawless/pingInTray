@@ -1,6 +1,8 @@
 package tray;
 
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 public class pingFix {
 
@@ -8,7 +10,7 @@ public class pingFix {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static boolean isReachableByPing(String host) {
+	public int isReachableByPing(String host) {
 		try{
             String cmd = "";
             if(System.getProperty("os.name").startsWith("Windows")) {   
@@ -18,21 +20,45 @@ public class pingFix {
                     // For Linux and OSX
                     cmd = "ping -c 1 " + host;
             }
-
+            
             Process myProcess = Runtime.getRuntime().exec(cmd);
             myProcess.waitFor();
-
-            if(myProcess.exitValue() == 0) {
-            	return true;
-            } else {
-            	return false;
-            }
+            try {
+            	myProcess.waitFor();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } 
+            BufferedReader reader=new BufferedReader(new InputStreamReader(myProcess.getInputStream())); 
+            String line=reader.readLine(); 
+            String mainResult="";
+            while(line!=null) 
+            { 
+             
+	            if(line.contains("time="))
+	            {
+	            	mainResult=line;
+	            }
+	            line=reader.readLine(); 
+	            
+	            
+            } 
+            
+            String split1[] = mainResult.split(" ");
+            String timeNeedsCleaning= split1[4];
+            timeNeedsCleaning= timeNeedsCleaning.replace("time=", "");
+            String timeString = timeNeedsCleaning.replace("ms", "");
+            System.out.println(timeString);
+            
+            int time = Integer.parseInt(timeString);
+            return time;
 
 	    } catch( Exception e ) {
 	
 	            e.printStackTrace();
-	            return false;
+	           
 	    }
+		return 0;
 	}
 	
 	public static void sop(String print){
@@ -56,21 +82,14 @@ public class pingFix {
 	/**
 	 * @param args
 	 */
+	/*
 	public static void main(String[] args) {
 		
-		Stopwatch timer = new Stopwatch();
-		sop("Enter IP to test");
 		
-		Scanner in = new Scanner(System.in);
-		String ip = in.nextLine();
-		System.out.println(isReachableByPing(ip));
-		
-		int ms = 0;
-		timer.start();
-		isReachableByPing(ip);
-		timer.stop();
-		System.out.println("Replay from host " + timer.getElapsedMilliseconds() + "ms");
+		isReachableByPing("www.google.ie");
 
-	}
+		
+
+	}*/
 
 }
