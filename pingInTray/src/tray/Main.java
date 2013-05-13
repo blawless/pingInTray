@@ -27,7 +27,6 @@ public class Main implements ActionListener {
 
 	public Main()
 	{
-		 //Check the SystemTray is supported
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
             return;
@@ -41,13 +40,10 @@ public class Main implements ActionListener {
 	        trayIcon = new TrayIcon(image, "tray icon");
 	        trayIcon.setImageAutoSize(true);
 	        tray = SystemTray.getSystemTray();
-	       
-	        // Create as pop-up menu components
-	        
+	       	        
 	        MenuItem exitItem = new MenuItem("Exit");
 	        exitItem.addActionListener(this);
 	        exitItem.setActionCommand("Exit");
-	        //Add components to pop-up menu
 	       
 	        popup.add(exitItem);
 	       
@@ -72,7 +68,6 @@ public class Main implements ActionListener {
 		
 	}
 	
-	//rubbish
 	public void startUpdater()
 	{ 	
 			Thread updater = new Thread(new TrayUpdater(trayIcon,tray));

@@ -21,7 +21,7 @@ public class TrayUpdater implements Runnable {
 	     
 	        while(true){
 	        pingFix p = new pingFix();
-	        int time = p.isReachableByPing("www.google.ie");
+	        int time = p.obtainPingTime("www.google.ie");
 	        
 	        NumberToImage num = new NumberToImage();
 	        Image image2 = num.intToImage(time);
